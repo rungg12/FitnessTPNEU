@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane stylesheets="ButtonCSS.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane fx:id="login" layoutX="760.0" layoutY="186.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="500.0" style="-fx-background-color: #DDDDDD;">
          <children>
@@ -28,9 +28,9 @@
                         </PasswordField>
                      </children>
                   </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="475.0">
+                  <AnchorPane prefHeight="200.0" prefWidth="300.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="350.0" text="LOGIN" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="60.0" />
+                        <Button layoutX="140.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="350.0" text="LOGIN" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="60.0" />
                      </children>
                   </AnchorPane>
                </children>
@@ -66,7 +66,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="475.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="350.0" text="LOGIN" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
+                        <Button mnemonicParsing="false" prefHeight="130.0" prefWidth="350.0" text="LOGIN" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="60.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="40.0" />
                      </children>
                   </AnchorPane>
                </children>
