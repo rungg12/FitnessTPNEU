@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class HelloApplication extends Application {
     @Override
@@ -13,9 +14,9 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("FXML-Login-Register.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
 
-        scene.getStylesheets().add(getClass().getResource("ButtonCSS.css").toString());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Style.css")).toString());
 
-        stage.setTitle("Hello!");
+        stage.setTitle("Fitness-Programm");
         stage.setScene(scene);
         stage.show();
     }

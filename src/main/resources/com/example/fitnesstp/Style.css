@@ -19,6 +19,10 @@
     -fx-alignment: CENTER;
 }
 
-.pane {
-    -fx-background-radius: 50;
+.rectangle {
+    -fx-arc-width: 20px;
+    -fx-arc-height: 20px;
+    -fx-border-width: 0px;
+    -fx-opacity: 0.5;
+    -fx-fill: #dddddd;
 }

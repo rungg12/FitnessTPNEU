@@ -2,27 +2,23 @@ package com.example.fitnesstp;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.shape.Rectangle;
 
 import java.time.LocalTime;
 
 public class HelloController {
     @FXML
-    private Label label;
-    Timer timer;
+    private  Rectangle rectangle;
 
     @FXML
-    public void startTimer(){
-        timer = new Timer(label);
-        timer.infinteTimer();
+    public void initialize(){
+        rectangle.setStyle("-fx-arc-width: 20px;");
+        rectangle.setStyle("-fx-arc-height: 20px;");
+        rectangle.setStyle("-fx-border-width: 0px;");
+        rectangle.setStyle("-fx-opacity: 0.5;");
+        rectangle.setStyle("-fx-fill: #dddddd;");
+
     }
-    @FXML
-    public void stopTimer(){
-        timer.stopTimer();
-    }
-    @FXML
-    public void startTimerTimer(){
-        timer = new Timer(label);
-        timer.startTimer(LocalTime.of(0,0,10));
-    }
+
 
 }
