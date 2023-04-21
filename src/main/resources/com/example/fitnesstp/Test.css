@@ -1,0 +1,25 @@
+#AnchorPane {
+    -fx-background-radius: 20;
+    -fx-background-color: rgb(221, 221, 221);
+}
+
+.text-field {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 30px;
+    -fx-background-color: rgb(255,255,255);
+    -fx-pref-width: 200;
+    -fx-text-fill: #363636;
+    -fx-background-radius: 50;
+    -fx-font-family: "Baskerville Old Face";
+    -fx-alignment: CENTER;
+}
+
+.button {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 30px;
+    -fx-background-color: rgb(152,63,175);
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+    -fx-background-radius: 50;
+    -fx-alignment: CENTER;
+}

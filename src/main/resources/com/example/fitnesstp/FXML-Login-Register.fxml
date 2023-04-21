@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
@@ -70,6 +69,5 @@
             </VBox>
          </children>
       </Pane>
-      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#dddddd" height="650.0" layoutX="760.0" layoutY="186.0" opacity="0.2" stroke="BLACK" strokeType="INSIDE" width="500.0" />
    </children>
 </Pane>
