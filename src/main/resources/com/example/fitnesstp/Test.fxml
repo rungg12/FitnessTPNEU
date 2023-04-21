@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="background" id="BackgroundPane" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fitnesstp.HelloController">
    <children>
-      <AnchorPane id="AnchorPane" disable="true" layoutX="760.0" layoutY="186.0" opacity="0.0" prefHeight="550.0" prefWidth="500.0">
+      <AnchorPane fx:id="register" id="AnchorPane" disable="true" layoutX="760.0" layoutY="186.0" opacity="0.0" prefHeight="550.0" prefWidth="500.0">
          <children>
             <TextField prefHeight="70.0" prefWidth="500.0" promptText="username" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
             <PasswordField prefHeight="70.0" prefWidth="500.0" promptText="password" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0" />
@@ -13,7 +13,7 @@
             <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="REGISTER" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" />
          </children>
       </AnchorPane>
-      <AnchorPane id="AnchorPane" layoutX="760.0" layoutY="186.0" prefHeight="400.0" prefWidth="500.0">
+      <AnchorPane fx:id="login" id="AnchorPane" layoutX="760.0" layoutY="186.0" prefHeight="400.0" prefWidth="500.0">
           <children>
               <TextField fx:id="usernameField" layoutX="80.0" layoutY="50.0" prefHeight="70.0" prefWidth="500.0" promptText="username" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0" />
               <PasswordField fx:id="passwordField" layoutX="80.0" layoutY="100.0" prefHeight="70.0" prefWidth="500.0" promptText="Password" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="150.0" />

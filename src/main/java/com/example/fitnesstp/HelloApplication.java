@@ -19,6 +19,8 @@ public class HelloApplication extends Application {
         stage.setTitle("Fitness-Programm");
         stage.setScene(scene);
         stage.show();
+
+
     }
 
     public static void main(String[] args) {

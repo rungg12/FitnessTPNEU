@@ -1,6 +1,6 @@
 #AnchorPane {
     -fx-background-radius: 20;
-    -fx-background-color: rgb(221, 221, 221);
+    -fx-background-color: rgba(122, 122, 122, 0.6);
 }
 
 .text-field {
@@ -22,4 +22,19 @@
     -fx-text-fill: WHITE;
     -fx-background-radius: 50;
     -fx-alignment: CENTER;
+}
+
+.button:hover {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 30px;
+    -fx-background-color: rgba(152,63,175);
+    -fx-opacity: 50%;
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+    -fx-background-radius: 50;
+    -fx-alignment: CENTER;
+}
+
+#BackgroundPane {
+    -fx-background-image: url("Images/bgImageCut.png");
 }
