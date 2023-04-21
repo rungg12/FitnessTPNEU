@@ -1,12 +1,30 @@
 .button {
     -fx-padding: 0.7em 0.57em;
     -fx-font-size: 30px;
-    -fx-background-color: rgb(152,63,175);
+    -fx-background-color: rgba(152,63,175);
     -fx-pref-width: 100;
     -fx-text-fill: WHITE;
     -fx-background-radius: 50;
     -fx-alignment: CENTER;
     }
+
+.button:hover {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 30px;
+    -fx-background-color: rgba(152,63,175);
+    -fx-opacity: 50%;
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+    -fx-background-radius: 50;
+    -fx-alignment: CENTER;
+}
+
+VBox, HBox, Pane, AnchorPane{
+    -fx-background-color: RGBA(221,221,221,0.5);
+    -fx-border-radius: 50;
+    -fx-arc-height: 50;
+    -fx-arc-width: 50;
+}
 
 .text-field {
     -fx-padding: 0.7em 0.57em;
@@ -19,10 +37,3 @@
     -fx-alignment: CENTER;
 }
 
-.rectangle {
-    -fx-arc-width: 20px;
-    -fx-arc-height: 20px;
-    -fx-border-width: 0px;
-    -fx-opacity: 0.5;
-    -fx-fill: #dddddd;
-}
