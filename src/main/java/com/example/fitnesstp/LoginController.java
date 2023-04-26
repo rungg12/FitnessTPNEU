@@ -14,7 +14,6 @@ public class LoginController {
     public Pane background;
     public AnchorPane register;
     public AnchorPane login;
-
     public Timeline setPosLoginRegister;
 
     @FXML
@@ -54,23 +53,6 @@ public class LoginController {
             }
         }
     }
-    /*
-    private void checkIfEmpty(Node c){
-        if(c.getClass().equals(TextField.class)) {
-            if (((TextField) c).getText().equals("")) {
-                c.setStyle("-fx-prompt-text-fill: red");
-                ((TextField) c).setPromptText("Fiel cannot be empty");
-            }
-        }
-        else if(c.getClass().equals(PasswordField.class)){
-            if (((PasswordField) c).getText().equals("")) {
-                c.setStyle("-fx-prompt-text-fill: red");
-                ((PasswordField) c).setPromptText("Fiel cannot be empty");
-            }
-        }
-    }
-
-     */
     @FXML
     public void login(){
         for(Node c : login.getChildren()){
