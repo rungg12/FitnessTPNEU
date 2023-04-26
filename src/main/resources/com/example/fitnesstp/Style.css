@@ -1,29 +1,6 @@
-.button {
-    -fx-padding: 0.7em 0.57em;
-    -fx-font-size: 30px;
-    -fx-background-color: rgba(152,63,175);
-    -fx-pref-width: 100;
-    -fx-text-fill: WHITE;
-    -fx-background-radius: 50;
-    -fx-alignment: CENTER;
-    }
-
-.button:hover {
-    -fx-padding: 0.7em 0.57em;
-    -fx-font-size: 30px;
-    -fx-background-color: rgba(152,63,175);
-    -fx-opacity: 50%;
-    -fx-pref-width: 100;
-    -fx-text-fill: WHITE;
-    -fx-background-radius: 50;
-    -fx-alignment: CENTER;
-}
-
-VBox, HBox, Pane, AnchorPane{
-    -fx-background-color: RGBA(221,221,221,0.5);
-    -fx-border-radius: 50;
-    -fx-arc-height: 50;
-    -fx-arc-width: 50;
+#AnchorPane {
+    -fx-background-radius: 20;
+    -fx-background-color: rgba(122, 122, 122, 0.6);
 }
 
 .text-field {
@@ -37,3 +14,27 @@ VBox, HBox, Pane, AnchorPane{
     -fx-alignment: CENTER;
 }
 
+.button {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 30px;
+    -fx-background-color: rgb(152,63,175);
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+    -fx-background-radius: 50;
+    -fx-alignment: CENTER;
+}
+
+.button:hover {
+    -fx-padding: 0.7em 0.57em;
+    -fx-font-size: 30px;
+    -fx-background-color: rgba(152,63,175);
+    -fx-opacity: 50%;
+    -fx-pref-width: 100;
+    -fx-text-fill: WHITE;
+    -fx-background-radius: 50;
+    -fx-alignment: CENTER;
+}
+
+#BackgroundPane {
+    -fx-background-image: url("Images/bgImageCut.png");
+}

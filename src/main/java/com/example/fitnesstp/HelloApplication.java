@@ -11,10 +11,10 @@ import java.util.Objects;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Test.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("FXML-Login-Register.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1920, 1080);
 
-        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Test.css")).toString());
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("Style.css")).toString());
 
         stage.setTitle("Fitness-Programm");
         stage.setScene(scene);
