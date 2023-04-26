@@ -1,0 +1,14 @@
+#rectWhite {
+    -fx-background-radius: 50;
+    -fx-background-color: WHITE;
+}
+
+#rectPurple {
+    -fx-background-radius: 50;
+    -fx-background-color: #983faf;
+}
+
+#rectLightpurple {
+    -fx-background-radius: 50;
+    -fx-background-color: #d962f6;
+}

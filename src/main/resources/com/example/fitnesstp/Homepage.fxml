@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <FlowPane alignment="CENTER_LEFT" layoutX="348.0" layoutY="595.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="430.0" prefWidth="1503.0">
+         <children>
+            <Group>
+               <children>
+                  <Rectangle id="rectWhite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
+                  <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="97.0" layoutY="-52.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+               </children>
+               <FlowPane.margin>
+                  <Insets right="80.0" />
+               </FlowPane.margin>
+            </Group>
+            <Group>
+               <children>
+                  <Rectangle id="rectWhite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
+                  <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="97.0" layoutY="-52.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+               </children>
+               <FlowPane.margin>
+                  <Insets right="80.0" />
+               </FlowPane.margin>
+            </Group>
+            <Group>
+               <children>
+                  <Rectangle id="rectWhite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
+                  <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="97.0" layoutY="-52.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+               </children>
+               <FlowPane.margin>
+                  <Insets right="80.0" />
+               </FlowPane.margin>
+            </Group>
+            <Group>
+               <children>
+                  <Rectangle id="rectWhite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" layoutX="-10.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
+                  <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="97.0" layoutY="-52.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+               </children>
+               <FlowPane.margin>
+                  <Insets />
+               </FlowPane.margin>
+            </Group>
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets left="50.0" right="50.0" />
+         </padding>
+      </FlowPane>
+      <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="989.0" layoutX="50.0" layoutY="41.0" stroke="BLACK" strokeType="INSIDE" width="167.0" />
+      <Rectangle id="rectLightpurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="510.0" layoutX="327.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" width="1539.0" />
+   </children>
+</Pane>

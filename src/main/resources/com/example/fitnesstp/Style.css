@@ -27,7 +27,7 @@
 .button:hover {
     -fx-padding: 0.7em 0.57em;
     -fx-font-size: 30px;
-    -fx-background-color: rgba(152,63,175);
+    -fx-background-color: rgb(217, 98, 246);
     -fx-opacity: 50%;
     -fx-pref-width: 100;
     -fx-text-fill: WHITE;
