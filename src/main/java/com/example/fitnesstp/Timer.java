@@ -3,7 +3,15 @@ package com.example.fitnesstp;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.time.LocalTime;
@@ -17,20 +25,59 @@ import java.util.Objects;
  */
 
 public class Timer {
+    private Scene scene;
+    private final Group root;
     private final Label label;
+    private Button exit;
+    private Button start;
+    private Button stop;
+    private Button pause;
     private Timeline tl;
     private LocalTime time;
     /**
      * @param label This is the label, where the remaining time is shown.
      */
-    public Timer(Label label) {
+    public Timer(Label label, Stage primaryStage) {
         this.label = label;
+        this.root = new Group();
+        scene = new Scene(root,1920,1080);
+        primaryStage.setScene(scene);
+
+        createObjects();
+        addObjectsToRoot();
+        setPositions();
+
+        primaryStage.show();
+    }
+    private void createObjects(){
+        start = new Button("START");
+        stop = new Button("STOP");
+        pause = new Button("PAUSE");
+        exit = new Button("X");
+
+        label.setPrefWidth(scene.getWidth() * 0.6);
+        label.setPrefHeight(scene.getHeight() * 0.1);
+
+        start.setPrefWidth(scene.getWidth() * 0.15);
+        start.setPrefHeight(scene.getHeight() * 0.04);
+    }
+    private void addObjectsToRoot(){
+        root.getChildren().add(start);
+        root.getChildren().add(stop);
+        root.getChildren().add(pause);
+        root.getChildren().add(label);
+        root.getChildren().add(exit);
+    }
+    private void setPositions(){
+        label.setLayoutX(scene.getWidth() / 2 - label.getWidth());
+        label.setLayoutY(0);
     }
 
     /**
      * This method starts counting down for the given duration
-     * @param duration How duration of the timer
+     * @param duration The duration of the timer
      */
+    @FXML
     public void startTimer(LocalTime duration){
         final DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_TIME;
         time = duration;
@@ -48,6 +95,7 @@ public class Timer {
     /**
      * This method starts a timer, that counts upwards starting form 0 min and 0 sec
      */
+    @FXML
     public void infinteTimer(){
         DateTimeFormatter formatter = DateTimeFormatter.ISO_LOCAL_TIME;
         if(Objects.equals(label.getText(), ""))
@@ -65,6 +113,7 @@ public class Timer {
     /**
      * pauses the timer
      */
+    @FXML
     public void stopTimer(){
         tl.stop();
     }

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Group?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.shape.Rectangle?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" fx:controller="com.example.fitnesstp.HomepageController" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.fitnesstp.HomepageController">
    <children>
       <FlowPane alignment="CENTER_LEFT" layoutX="348.0" layoutY="595.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="430.0" prefWidth="1503.0">
          <children>
             <Group>
                <children>
-                  <Rectangle id="rectWhite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
+                  <Rectangle id="rectWhite" fx:id="stat1" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
                   <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="97.0" layoutY="-52.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
                </children>
                <FlowPane.margin>
@@ -21,7 +22,7 @@
             </Group>
             <Group>
                <children>
-                  <Rectangle id="rectWhite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
+                  <Rectangle id="rectWhite" fx:id="stat2" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
                   <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="97.0" layoutY="-52.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
                </children>
                <FlowPane.margin>
@@ -30,7 +31,7 @@
             </Group>
             <Group>
                <children>
-                  <Rectangle id="rectWhite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
+                  <Rectangle id="rectWhite" fx:id="stat3" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
                   <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="97.0" layoutY="-52.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
                </children>
                <FlowPane.margin>
@@ -41,6 +42,7 @@
                <children>
                   <Rectangle id="rectWhite" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="290.0" layoutX="-10.0" layoutY="3.0" stroke="BLACK" strokeType="INSIDE" width="290.0" />
                   <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="90.0" layoutX="97.0" layoutY="-52.0" stroke="BLACK" strokeType="INSIDE" width="90.0" />
+                  <Button fx:id="timer" layoutX="109.0" layoutY="136.0" mnemonicParsing="false" text="Button" />
                </children>
                <FlowPane.margin>
                   <Insets />
@@ -54,7 +56,14 @@
             <Insets left="50.0" right="50.0" />
          </padding>
       </FlowPane>
-      <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="989.0" layoutX="50.0" layoutY="41.0" stroke="BLACK" strokeType="INSIDE" width="167.0" />
-      <Rectangle id="rectLightpurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="510.0" layoutX="327.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" width="1539.0" />
+      <Group layoutX="50.0" layoutY="41.0">
+         <children>
+            <Rectangle id="rectPurple" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="989.0" stroke="BLACK" strokeType="INSIDE" width="170.0" />
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="35.0" y="35.0" />
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="35.0" y="205.0" />
+            <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" x="35.0" y="340.0" />
+         </children>
+      </Group>
+      <Rectangle id="rectLightpurple" fx:id="showVideo" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="510.0" layoutX="327.0" layoutY="44.0" stroke="BLACK" strokeType="INSIDE" width="1539.0" />
    </children>
 </Pane>

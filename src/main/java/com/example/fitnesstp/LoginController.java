@@ -14,24 +14,11 @@ public class LoginController {
     public Pane background;
     public AnchorPane register;
     public AnchorPane login;
-    public Timeline setPosLoginRegister;
 
     @FXML
     public void initialize(){
-        startPositi();
         login.setOpacity(1);
         register.setOpacity(0);
-    }
-    public void startPositi(){
-
-        setPosLoginRegister = new Timeline(new KeyFrame(Duration.millis(20), actionEvent -> {
-            login.setLayoutX(background.getWidth()/2-login.getWidth()/2);
-            login.setLayoutY(background.getHeight()/2-login.getHeight()/2);
-            login.setLayoutX(background.getWidth()/2-login.getWidth()/2);
-            login.setLayoutY(background.getHeight()/2-login.getHeight()/2);
-        }));
-        setPosLoginRegister.setCycleCount(Timeline.INDEFINITE);
-        setPosLoginRegister.play();
     }
 
     /**
