@@ -36,5 +36,9 @@
 }
 
 #BackgroundPane {
-    -fx-background-image: url("Images/bgImageCut.png");
+    -fx-background-image: url(/images/bgImageCut.png);
+}
+
+#SwapRegister {
+    -fx-font-size: 10px;
 }
