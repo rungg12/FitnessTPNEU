@@ -135,7 +135,7 @@ public class LoginController {
     }
 
     private void setPositions(AnchorPane loginPane, TextField username, PasswordField password) {
-        loginPane.setLayoutX(scene.getWidth() * 0.4);
+        loginPane.setLayoutX(scene.getWidth()/2 - loginPane.getPrefWidth()/2);
         loginPane.setLayoutY(scene.getHeight() * 0.17222222222222222222222222222222);
 
         AnchorPane.setLeftAnchor(username, 10.0);

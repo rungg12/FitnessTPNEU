@@ -11,7 +11,7 @@ public class HomepageController {
     Scene sceneAct;
     Pane background;
     public HomepageController(Scene scene, Pane root){
-        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/Homestyle.css")).toExternalForm());
+        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/Homestyle.css")).toExternalForm());
 
         sceneAct = scene;
         background = root;

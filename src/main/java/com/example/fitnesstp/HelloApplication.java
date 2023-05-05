@@ -37,6 +37,7 @@ public class HelloApplication extends Application {
         stage.show();
 
         LoginController loginController = new LoginController(scene, root);
+        //HomepageController homepageController = new HomepageController(scene, root);
     }
 
     public static void main(String[] args) {
