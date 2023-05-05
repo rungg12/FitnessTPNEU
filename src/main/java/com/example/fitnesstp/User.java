@@ -9,6 +9,7 @@ import java.util.List;
 
 public class User {
     private String name;
+    private String password;
     private int age;
     private Double height;
     private Double weight;
@@ -22,6 +23,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getAge() {

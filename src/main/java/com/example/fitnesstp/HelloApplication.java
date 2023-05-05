@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class HelloApplication extends Application {
 
-    public void start(Stage stage) {
+    public void start(Stage stage) throws InterruptedException {
 
         int windowWidth = 1920;
         int windowHeight = 1080;
@@ -31,8 +31,12 @@ public class HelloApplication extends Application {
         stage.setFullScreen(true);
         stage.show();
 
-        //LoginController loginController = new LoginController(scene, root);
+
         HomepageController homepageController = new HomepageController(scene, root);
+        LoginController loginController = new LoginController(scene, root, homepageController);
+
+
+
     }
 
     public static void main(String[] args) {

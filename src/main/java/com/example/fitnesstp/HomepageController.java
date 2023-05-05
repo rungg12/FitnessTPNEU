@@ -22,15 +22,12 @@ public class HomepageController {
 
         sceneAct = scene;
         background = root;
-        createObjects();
-        createButtons();
     }
 
 
 
     public void createObjects(){
-
-        background.getChildren().removeAll();
+        background.getChildren().clear();
         background.setId("background");
 
         siteBar.setX(sceneAct.getWidth()*0.0156);
@@ -77,6 +74,8 @@ public class HomepageController {
         slider4.setId("slider");
 
         background.getChildren().addAll(siteBar, mainView, slider1, slider2, slider3, slider4);
+
+        createButtons();
     }
 
     public void createButtons() {

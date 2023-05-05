@@ -11,6 +11,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.Objects;
 import java.util.Timer;
 
@@ -32,17 +36,17 @@ public class LoginController {
     private AnchorPane loginPane;
     private AnchorPane registerPane;
 
-    public LoginController(Scene scene, Pane root){
+    private HomepageController homepage;
+
+    public LoginController(Scene scene, Pane root, HomepageController homepage){
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/LoginStyle.css")).toExternalForm());
 
+        this.homepage = homepage;
         this.scene = scene;
         this.background = root;
         this.background.getChildren().removeAll();
 
         createObjects();
-        setSizesAndIDS();
-        positionLogin();
-        positionRegister();
     }
 
     private void createObjects(){
@@ -51,7 +55,15 @@ public class LoginController {
         loginButton = new Button("LOGIN");
         loginButton.setOnAction(actionEvent -> {
             for (Node c : loginPane.getChildren()) {
-                checkIfEmpty(c);
+                if(checkIfEmpty(c)){
+                    try {
+                        if (authenticate(username.getText(),password.getText())) {
+                            homepage.createObjects();
+                        }
+                    } catch (IOException | ClassNotFoundException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
         });
         loginPane = new AnchorPane();
@@ -71,6 +83,22 @@ public class LoginController {
         background.getChildren().addAll(loginPane, registerPane);
         registerPane.setVisible(false);
         background.setId("BackgroundPane");
+
+        setSizesAndIDS();
+        positionLogin();
+        positionRegister();
+    }
+
+    public boolean authenticate(String username, String password) throws IOException, ClassNotFoundException, FileNotFoundException {
+        // Deserialisation der Abgespeicherten User
+        FileInputStream fileIn = new FileInputStream(username + ".ser");
+        ObjectInputStream in = new ObjectInputStream(fileIn);
+        User user = (User) in.readObject();
+        in.close();
+        fileIn.close();
+
+        // Check if the username and password match
+        return user.getName().equals(username) && user.getPassword().equals(password);
     }
 
     private void setSizesAndIDS(){
@@ -176,18 +204,21 @@ public class LoginController {
 
     }
 
-    private <T> void checkIfEmpty(T c){
+    private <T> boolean checkIfEmpty(T c){
         if(c.getClass().equals(TextField.class)) {
             if (((TextField) c).getText().equals("")) {
                 ((TextField) c).setStyle("-fx-prompt-text-fill: red");
                 ((TextField) c).setPromptText("Field cannot be empty");
+                return false;
             }
         }
         else if(c.getClass().equals(PasswordField.class)){
             if (((PasswordField) c).getText().equals("")) {
                 ((PasswordField) c).setStyle("-fx-prompt-text-fill: red");
                 ((PasswordField) c).setPromptText("Field cannot be empty");
+                return false;
             }
         }
+        return true;
     }
 }
