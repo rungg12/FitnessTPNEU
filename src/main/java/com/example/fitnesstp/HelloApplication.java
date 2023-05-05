@@ -30,6 +30,7 @@ public class HelloApplication extends Application {
         stage.setRenderScaleX(1);
         stage.setRenderScaleY(1);
         stage.setForceIntegerRenderScale(true);
+        //stage.setFullScreen(true);
         stage.show();
 
         LoginController loginController = new LoginController(scene, root);
