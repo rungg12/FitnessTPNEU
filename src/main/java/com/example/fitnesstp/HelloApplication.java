@@ -18,22 +18,21 @@ public class HelloApplication extends Application {
         root.setPrefSize(windowWidth,windowHeight);
         Scene scene = new Scene(root, windowWidth, windowHeight);
 
-
-
-        stage.setTitle("Test");
+        stage.setTitle("Fitness Gott");
         stage.setScene(scene);
         stage.setWidth(1920);
         stage.setHeight(1080);
-
 
         stage.requestFocus();
         stage.setRenderScaleX(1);
         stage.setRenderScaleY(1);
         stage.setForceIntegerRenderScale(true);
+        stage.setMaximized(true);
+        stage.setFullScreen(true);
         stage.show();
 
-        LoginController loginController = new LoginController(scene, root);
-        //HomepageController homepageController = new HomepageController(scene, root);
+        //LoginController loginController = new LoginController(scene, root);
+        HomepageController homepageController = new HomepageController(scene, root);
     }
 
     public static void main(String[] args) {
