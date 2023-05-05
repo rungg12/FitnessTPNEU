@@ -1,7 +1,5 @@
 package com.example.fitnesstp;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,14 +7,8 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.util.Duration;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.Objects;
-import java.util.Timer;
 
 public class LoginController {
     private boolean register = false;
@@ -36,7 +28,7 @@ public class LoginController {
     private AnchorPane loginPane;
     private AnchorPane registerPane;
 
-    private HomepageController homepage;
+    private final HomepageController  homepage;
 
     public LoginController(Scene scene, Pane root, HomepageController homepage){
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/LoginStyle.css")).toExternalForm());
@@ -74,6 +66,33 @@ public class LoginController {
         registerSwapRegister = new Button("login?");
         registerSwapper(registerSwapRegister);
         registerButton = new Button("REGISTER");
+        registerButton.setOnAction(actionEvent -> {
+
+            for (Node c : loginPane.getChildren()) {
+                if(checkIfEmpty(c)){
+                   if (registerPassword.getText().equals(repeatPassword.getText())) {
+                       try {
+                           register(registerUsername.getText(), registerPassword.getText());
+                       } catch (IOException e) {
+                           System.out.println(e.getMessage());
+                           registerUsername.setStyle("-fx-prompt-text-fill: red");
+                           registerUsername.setPromptText("Error");
+                           registerUsername.clear();
+                           registerPassword.clear();
+                           repeatPassword.clear();
+                           break;
+                       }
+                       homepage.createObjects();
+                   }else {
+                       registerUsername.setStyle("-fx-prompt-text-fill: red");
+                       registerUsername.setPromptText("The passwords entered do not match!");
+                       registerPassword.clear();
+                       registerUsername.clear();
+                       repeatPassword.clear();
+                   }
+                }
+            }
+        });
         registerUsername = new TextField();
         registerPassword = new PasswordField();
         repeatPassword = new PasswordField();
@@ -89,16 +108,49 @@ public class LoginController {
         positionRegister();
     }
 
-    public boolean authenticate(String username, String password) throws IOException, ClassNotFoundException, FileNotFoundException {
+    public boolean authenticate(String username, String password) throws IOException, ClassNotFoundException {
         // Deserialisation der Abgespeicherten User
-        FileInputStream fileIn = new FileInputStream(username + ".ser");
-        ObjectInputStream in = new ObjectInputStream(fileIn);
-        User user = (User) in.readObject();
+        FileInputStream fileIn = null;
+        ObjectInputStream in = null;
+        User user = null;
+        try {
+            fileIn = new FileInputStream(username + ".ser");
+            in = new ObjectInputStream(fileIn);
+            user = (User) in.readObject();
+        } catch (ClassNotFoundException a){
+            this.username.setStyle("-fx-prompt-text-fill: red");
+            this.username.setPromptText("No Account found");
+            this.password.setPromptText("");
+            this.password.clear();
+            this.username.clear();
+            return false;
+        } catch (IOException e){
+            this.username.setStyle("-fx-prompt-text-fill: red");
+            this.username.setPromptText("Error");
+            this.password.setPromptText("");
+            this.password.clear();
+            this.username.clear();
+            return false;
+        }
+
+
         in.close();
         fileIn.close();
 
-        // Check if the username and password match
+        // Wenn User und Pass übereinstimmen, wird true zurückgegeben
         return user.getName().equals(username) && user.getPassword().equals(password);
+    }
+
+    public void register(String username, String password) throws IOException {
+       //Neues Userobjekt
+        User user = new User(username, password);
+
+        //Serialisieren
+        FileOutputStream fileOut = new FileOutputStream(username + ".ser");
+        ObjectOutputStream out = new ObjectOutputStream(fileOut);
+        out.writeObject(user);
+        out.close();
+        fileOut.close();
     }
 
     private void setSizesAndIDS(){

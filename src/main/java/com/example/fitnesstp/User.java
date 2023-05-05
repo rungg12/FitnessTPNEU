@@ -1,5 +1,6 @@
 package com.example.fitnesstp;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -7,7 +8,7 @@ import java.util.List;
  * @
  */
 
-public class User {
+public class User implements Serializable {
     private String name;
     private String password;
     private int age;
@@ -16,7 +17,10 @@ public class User {
     private char gender;
     private List<Workout> workouts;
 
-
+    public User(String username, String password){
+        this.password = password;
+        this.name = username;
+    }
     public String getName() {
         return name;
     }
