@@ -1,21 +1,24 @@
 package com.example.fitnesstp;
 
-import javafx.scene.media.*;
+import java.io.Serial;
+import java.io.Serializable;
 
 
-public class Exercise {
+public class Exercise implements Serializable {
+    @Serial
+    static private final long serialVersionUID = 1L;
     private final String name;
-    private final Media exampleVideo;
+    private final String description;
 
-    public Exercise(String name, Media exampleVideo) {
+    public Exercise(String name, String description) {
         this.name = name;
-        this.exampleVideo = exampleVideo;
+        this.description = description;
     }
 
-    public Media getExampleVideo(){
-        return this.exampleVideo;
-    }
     public String getName(){
         return this.name;
+    }
+    public String getDescription() {
+        return this.description;
     }
 }
