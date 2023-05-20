@@ -4,6 +4,6 @@ module com.example.fitnesstp {
     requires javafx.media;
     requires com.google.gson;
 
-    opens com.example.fitnesstp to javafx.fxml;
+    opens com.example.fitnesstp to com.google.gson;
     exports com.example.fitnesstp;
 }

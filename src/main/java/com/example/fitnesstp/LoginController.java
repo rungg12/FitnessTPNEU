@@ -234,7 +234,7 @@ public class LoginController {
         AnchorPane.setRightAnchor(loginButton, 100.0);
         AnchorPane.setBottomAnchor(loginButton, 70.0);
 
-        AnchorPane.setLeftAnchor(swapRegister, 390.0);
+        AnchorPane.setLeftAnchor(swapRegister, 300.0);
         AnchorPane.setRightAnchor(swapRegister, 20.0);
         AnchorPane.setBottomAnchor(swapRegister, 20.0);
     }
@@ -250,7 +250,7 @@ public class LoginController {
         AnchorPane.setRightAnchor(registerButton, 100.0);
         AnchorPane.setBottomAnchor(registerButton, 70.0);
 
-        AnchorPane.setLeftAnchor(registerSwapRegister, 390.0);
+        AnchorPane.setLeftAnchor(registerSwapRegister, 300.0);
         AnchorPane.setRightAnchor(registerSwapRegister, 20.0);
         AnchorPane.setBottomAnchor(registerSwapRegister, 20.0);
 
