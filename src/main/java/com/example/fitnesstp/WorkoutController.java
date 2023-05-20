@@ -53,7 +53,8 @@ public class WorkoutController {
             KeyCode keyCode = event.getCode();
 
             if (keyCode == KeyCode.ESCAPE) {
-                homepageController.createObjects();            }
+                homepageController.createObjects();
+            }
         });
 
         root.getChildren().clear();
