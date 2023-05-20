@@ -1,6 +1,7 @@
 package com.example.fitnesstp;
 
 import com.google.gson.Gson;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -8,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -17,10 +19,16 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 
 import java.io.*;
 import java.util.Objects;
+import java.util.Random;
 
 public class WorkoutController {
     private final Scene scene;
@@ -30,6 +38,8 @@ public class WorkoutController {
     private Button previousExercise;
     private Button nextExercise;
     private TextArea exerciseDescription;
+
+    private Text exerciseName;
 
     private MediaView videoPlayer;
     private MediaPlayer mediaPlayer;
@@ -67,6 +77,7 @@ public class WorkoutController {
         previousExercise = new Button("previous exercise");
         nextExercise = new Button("next exercise");
         exerciseDescription = new TextArea();
+        exerciseName = new Text();
         videoPlayer = new MediaView();
         scrollPane = new ScrollPane();
         content = new VBox();
@@ -75,6 +86,14 @@ public class WorkoutController {
         root.getChildren().addAll(rightSide, scrollPane);
 
         testRec = new Rectangle();
+
+        //Button Listner
+        nextExercise.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                setExerciseVideo();
+            }
+        });
     }
 
 
@@ -94,11 +113,14 @@ public class WorkoutController {
         videoPlayer.setFitWidth(1540.0);
         videoPlayer.setFitHeight(590.0);
 
-        HBox buttons = new HBox(20, previousExercise, nextExercise);
+        HBox buttons = new HBox(20, exerciseName,previousExercise, nextExercise);
         buttons.setLayoutX(20);
         buttons.setLayoutY(620);
+        buttons.setSpacing(30);
+
+
         previousExercise.setPrefHeight(60);
-        previousExercise.setPrefWidth(670);
+        previousExercise.setPrefWidth(1000);
         nextExercise.setPrefWidth(670);
         nextExercise.setPrefHeight(60);
 
@@ -111,12 +133,11 @@ public class WorkoutController {
         setExerciseVideo();
         exerciseDescription.setText(exercise.getDescription());
     }
-
+/*
     private void setExerciseVideo(){
         Gson gson = new Gson();
         try (FileReader reader = new FileReader(new File(Objects.requireNonNull(getClass().getResource("/Exercises/Test.json")).toURI()))){
             exercise = gson.fromJson(reader, Exercise.class);
-
         }
         catch(Exception e){
             e.printStackTrace();
@@ -132,6 +153,48 @@ public class WorkoutController {
         videoPlayer.setMediaPlayer(mediaPlayer);
         mediaPlayer.play();
     }
+
+ */
+
+
+
+    private void setExerciseVideo() {
+        Gson gson = new Gson();
+
+        // Randomly select a file number
+        Random random = new Random();
+        int fileNumber = random.nextInt(20) + 1; // Assuming files are numbered from 1 to 20
+
+        try (FileReader reader = new FileReader(new File(Objects.requireNonNull(getClass().getResource("/Exercises/" + fileNumber + ".json")).toURI()))) {
+            exercise = gson.fromJson(reader, Exercise.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        try {
+            File videoFile = new File("src/main/resources/Videos/" + fileNumber + ".mp4");
+            //um wartezeiten beim Klicken der Buttons zu verhindern
+            if (videoFile.exists()) {
+                exerciseVideo = new Media(videoFile.toURI().toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        exerciseDescription.setWrapText(true);
+        exerciseDescription.setFont(Font.font("Montserrat", FontWeight.BOLD, 25));
+        exerciseDescription.setText(exercise.getDescription());
+        exerciseName.setText(exercise.getName());
+        exerciseName.setFont(Font.font("Montserrat", FontWeight.BOLD, 40));
+        exerciseName.setFill(Color.WHITE);
+        exerciseName.setTextAlignment(TextAlignment.CENTER);
+
+        if (exerciseVideo != null) {
+            mediaPlayer = new MediaPlayer(exerciseVideo);
+            videoPlayer.setMediaPlayer(mediaPlayer);
+            mediaPlayer.play();
+        }
+    }
+
 
     private void setupScrollPane(){
 
