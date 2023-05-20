@@ -1,11 +1,16 @@
 package com.example.fitnesstp;
 
 import com.google.gson.Gson;
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -37,12 +42,19 @@ public class WorkoutController {
     private Exercise exercise;
     private Rectangle testRec;
 
-    public WorkoutController(Scene scene, Pane root){
+    public WorkoutController(Scene scene, Pane root, HomepageController homepageController){
         root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/Homestyle.css")).toExternalForm());
 
 
         this.scene = scene;
         this.root = root;
+
+        root.setOnKeyPressed(event -> {
+            KeyCode keyCode = event.getCode();
+
+            if (keyCode == KeyCode.ESCAPE) {
+                homepageController.createObjects();            }
+        });
 
         root.getChildren().clear();
         createObjects();
@@ -66,6 +78,8 @@ public class WorkoutController {
 
         testRec = new Rectangle();
     }
+
+
 
     private void setPositionsAndId(){
         rightSide.setLayoutX(350.0);
