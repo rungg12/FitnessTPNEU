@@ -129,7 +129,7 @@ public class HomepageController {
         imageView1.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                WorkoutController workoutController = new WorkoutController(sceneAct, background);
+                WorkoutController workoutController = new WorkoutController(sceneAct, background, HomepageController.this);
             }
         });
 
