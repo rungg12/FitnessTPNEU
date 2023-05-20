@@ -44,7 +44,7 @@ public class WorkoutController {
         this.scene = scene;
         this.root = root;
 
-        this.root.getChildren().removeAll();
+        root.getChildren().clear();
         createObjects();
         setPositionsAndId();
         //setupScrollPane();
@@ -52,6 +52,7 @@ public class WorkoutController {
     }
 
     private void createObjects(){
+
         rightSide = new AnchorPane();
         previousExercise = new Button("previous exercise");
         nextExercise = new Button("next exercise");

@@ -1,11 +1,19 @@
 package com.example.fitnesstp;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.scene.transform.Scale;
 
 import java.net.URL;
@@ -16,6 +24,10 @@ public class HomepageController {
     Pane background;
     Rectangle siteBar = new Rectangle();
     Rectangle mainView = new Rectangle();
+    ImageView imageView1;
+    ImageView imageView2;
+    ImageView imageView3;
+    ImageView imageView4;
 
     public HomepageController(Scene scene, Pane root){
         root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/Homestyle.css")).toExternalForm());
@@ -73,27 +85,37 @@ public class HomepageController {
         slider4.setHeight((siteBar.getY()+siteBar.getHeight()) - slider4.getY());
         slider4.setId("slider");
 
-        background.getChildren().addAll(siteBar, mainView, slider1, slider2, slider3, slider4);
+        Text nameText = new Text("Fitness Fiesta");
+        nameText.setFont(Font.font("Montserrat", FontWeight.BOLD, 160));
+        nameText.setFill(Color.WHITE);
+        nameText.setTextAlignment(TextAlignment.CENTER);
+        nameText.setX(mainView.getX());
+        nameText.setY(mainView.getY() + mainView.getHeight() / 2);
+        nameText.setWrappingWidth(mainView.getWidth());
+
+        background.getChildren().addAll(siteBar, mainView, slider1, slider2, slider3, slider4, nameText);
 
         createButtons();
     }
+
+
 
     public void createButtons() {
         int amountPictures = 4;
 
         //Images Importieren
-        Image a = new Image("/images/platzhalterKlein.png"); //wird einmal als Image abgespeichert, damit man auf die Höhe und breite zugreifen kann
-        ImageView imageView1 = new ImageView(new Image("/images/platzhalterKlein.png"));
-        ImageView imageView2 = new ImageView(new Image("/images/platzhalterKlein.png"));
-        ImageView imageView3 = new ImageView(new Image("/images/platzhalterKlein.png"));
-        ImageView imageView4 = new ImageView(new Image("/images/platzhalterKlein.png"));
+        Image a = new Image("/images/AddWorkoutSymbol100x100.png"); //wird einmal als Image abgespeichert, damit man auf die Höhe und breite zugreifen kann
+        imageView1 = new ImageView(new Image("/images/AddWorkoutSymbol100x100.png"));
+        imageView2 = new ImageView(new Image("/images/AddWorkoutSymbol100x100.png"));
+        imageView3 = new ImageView(new Image("/images/AddWorkoutSymbol100x100.png"));
+        imageView4 = new ImageView(new Image("/images/exit100x100.png"));
 
         //Abstand zwischen Bildern, bzw zwischen oben und unten berechnen
-        double distancePicToPic = (siteBar.getHeight()-a.getHeight()*amountPictures)/amountPictures;
+        double distancePicToPic = (siteBar.getHeight()-a.getHeight()*amountPictures-1)/amountPictures;
 
         //Neue VBox mittig über das Rectangle, damit die Bilder in der Mitte angezeigt werden
         VBox buttonbox = new VBox();
-        buttonbox.setLayoutX(siteBar.getX() + ((siteBar.getWidth()-a.getWidth())/2));
+        buttonbox.setLayoutX(siteBar.getX() + (siteBar.getWidth()-a.getWidth())/2);
         buttonbox.setLayoutY(siteBar.getX() + ((siteBar.getWidth()-a.getWidth())/2));
 
         buttonbox.setSpacing(distancePicToPic);
@@ -101,5 +123,40 @@ public class HomepageController {
         buttonbox.getChildren().addAll(imageView1, imageView2, imageView3, imageView4);
 
         background.getChildren().addAll(buttonbox);
+
+        //Listener fuer das Klicken auf die Symbole
+        // Add event handlers to the image views
+        imageView1.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                WorkoutController workoutController = new WorkoutController(sceneAct, background);
+            }
+        });
+
+        imageView2.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                // Handle the click event for the second image view
+                // Change the scene or perform any other desired action
+            }
+        });
+
+        imageView3.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                // Handle the click event for the third image view
+                // Change the scene or perform any other desired action
+            }
+        });
+
+        imageView4.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                Platform.exit();
+            }
+        });
     }
+
+
+
 }
