@@ -1,11 +1,9 @@
 package com.example.fitnesstp;
 
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -14,9 +12,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
-import javafx.scene.transform.Scale;
 
-import java.net.URL;
 import java.util.Objects;
 
 public class HomepageController {
@@ -126,35 +122,19 @@ public class HomepageController {
 
         //Listener fuer das Klicken auf die Symbole
         // Add event handlers to the image views
-        imageView1.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                WorkoutController workoutController = new WorkoutController(sceneAct, background, HomepageController.this);
-            }
+        imageView1.setOnMouseClicked(event -> new WorkoutController(background, HomepageController.this));
+
+        imageView2.setOnMouseClicked(event -> {
+            // Handle the click event for the second image view
+            // Change the scene or perform any other desired action
         });
 
-        imageView2.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                // Handle the click event for the second image view
-                // Change the scene or perform any other desired action
-            }
+        imageView3.setOnMouseClicked(event -> {
+            // Handle the click event for the third image view
+            // Change the scene or perform any other desired action
         });
 
-        imageView3.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                // Handle the click event for the third image view
-                // Change the scene or perform any other desired action
-            }
-        });
-
-        imageView4.setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                Platform.exit();
-            }
-        });
+        imageView4.setOnMouseClicked(event -> Platform.exit());
     }
 
 

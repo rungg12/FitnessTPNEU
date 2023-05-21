@@ -1,17 +1,10 @@
 package com.example.fitnesstp;
 
 import com.google.gson.Gson;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -31,7 +24,6 @@ import java.util.Objects;
 import java.util.Random;
 
 public class WorkoutController {
-    private final Scene scene;
     private final Pane root;
 
     private Pane rightSide;
@@ -42,7 +34,6 @@ public class WorkoutController {
     private Text exerciseName;
 
     private MediaView videoPlayer;
-    private MediaPlayer mediaPlayer;
     private Media exerciseVideo;
 
     private ScrollPane scrollPane;
@@ -51,10 +42,9 @@ public class WorkoutController {
     private Exercise exercise;
     private Rectangle testRec;
 
-    public WorkoutController(Scene scene, Pane root, HomepageController homepageController){
+    public WorkoutController(Pane root, HomepageController homepageController){
         root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/Homestyle.css")).toExternalForm());
 
-        this.scene = scene;
         this.root = root;
 
         root.setOnKeyPressed(event -> {
@@ -86,14 +76,7 @@ public class WorkoutController {
         root.getChildren().addAll(rightSide, scrollPane);
 
         testRec = new Rectangle();
-
-        //Button Listner
-        nextExercise.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                setExerciseVideo();
-            }
-        });
+        nextExercise.setOnAction(actionEvent -> setExerciseVideo());
     }
 
 
@@ -156,8 +139,6 @@ public class WorkoutController {
 
  */
 
-
-
     private void setExerciseVideo() {
         Gson gson = new Gson();
 
@@ -189,15 +170,10 @@ public class WorkoutController {
         exerciseName.setTextAlignment(TextAlignment.CENTER);
 
         if (exerciseVideo != null) {
-            mediaPlayer = new MediaPlayer(exerciseVideo);
+            MediaPlayer mediaPlayer = new MediaPlayer(exerciseVideo);
             videoPlayer.setMediaPlayer(mediaPlayer);
             mediaPlayer.play();
         }
-    }
-
-
-    private void setupScrollPane(){
-
     }
 
     private void addExerciseToList(){

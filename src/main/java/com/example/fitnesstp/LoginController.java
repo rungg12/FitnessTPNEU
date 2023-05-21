@@ -110,9 +110,9 @@ public class LoginController {
 
     public boolean authenticate(String username, String password) throws IOException, ClassNotFoundException {
         // Deserialisation der Abgespeicherten User
-        FileInputStream fileIn = null;
-        ObjectInputStream in = null;
-        User user = null;
+        FileInputStream fileIn;
+        ObjectInputStream in;
+        User user;
         try {
             fileIn = new FileInputStream(username + ".ser");
             in = new ObjectInputStream(fileIn);

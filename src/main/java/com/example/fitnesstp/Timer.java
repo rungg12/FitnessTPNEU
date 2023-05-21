@@ -4,14 +4,11 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.util.Duration;
 
 import java.time.LocalTime;
@@ -25,7 +22,7 @@ import java.util.Objects;
  */
 
 public class Timer {
-    private Scene scene;
+    private final Scene scene;
     private final Group root;
     private final Label label;
     private Button exit;
