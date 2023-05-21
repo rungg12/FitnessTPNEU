@@ -13,7 +13,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -24,9 +23,8 @@ public class AddExercise {
 
     Pane root;
     HomepageController homepageController;
-    FileChooser fileChooser;
 
-    public AddExercise(Pane root, HomepageController homepageController){
+    public AddExercise(Pane root, HomepageController homepageController) {
         this.root = root;
         this.homepageController = homepageController;
 
@@ -41,17 +39,12 @@ public class AddExercise {
         createObjects();
     }
 
-    public void createObjects(){
+    public void createObjects() {
         root.getChildren().clear();
 
         Text titleText = new Text("Add Workout");
         titleText.setFont(Font.font("Montserrat", FontWeight.BOLD, 50));
         titleText.setFill(Color.WHITE);
-
-        fileChooser = new FileChooser();
-        fileChooser.setTitle("Select Video File");
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Video Files", "*.mp4"));
-
 
         TextField nameTextField = new TextField();
         nameTextField.setPromptText("Name");
@@ -59,6 +52,13 @@ public class AddExercise {
         TextField descriptionTextField = new TextField();
         descriptionTextField.setPromptText("Description");
 
+        Button selectButton = new Button("Select Video");
+        selectButton.setPrefWidth(root.getWidth());
+        selectButton.setMinWidth(root.getWidth());
+        selectButton.setOnAction(event -> {
+            String name = String.valueOf(findNextAvailableNumber());
+            selectVideo(name);
+        });
 
         Button saveButton = new Button("Save Workout");
         saveButton.setPrefWidth(root.getWidth());
@@ -72,12 +72,34 @@ public class AddExercise {
 
         VBox vbox = new VBox(10);
         vbox.setPrefWidth(root.getWidth());
-        vbox.setPrefHeight(root.getWidth()/2);
+        vbox.setPrefHeight(root.getWidth() / 2);
         vbox.setLayoutY(0);
         vbox.setLayoutX(0);
         vbox.setAlignment(Pos.CENTER);
-        vbox.getChildren().addAll(titleText, nameTextField, descriptionTextField, saveButton);
+        vbox.getChildren().addAll(titleText, nameTextField, descriptionTextField, selectButton, saveButton);
         root.getChildren().add(vbox);
+    }
+
+    private void selectVideo(String name) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Video File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Video Files", "*.mp4"));
+
+        File selectedFile = fileChooser.showOpenDialog(null);
+
+        if (selectedFile != null) {
+            String fileName = name + ".mp4";
+            uploadVideo(selectedFile, fileName);
+        }
+    }
+
+    private void uploadVideo(File videoFile, String fileName) {
+        try {
+            Path destination = Path.of("src/main/resources/Videos/" + fileName);
+            Files.copy(videoFile.toPath(), destination);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void saveWorkout(String name, String description) {
@@ -92,8 +114,6 @@ public class AddExercise {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        uploadVideo(String.valueOf(nextNumber));
     }
 
     private int findNextAvailableNumber() {
@@ -121,22 +141,7 @@ public class AddExercise {
                 return true;
             }
         }
+
         return false;
     }
-
-
-        private void uploadVideo(String fileName) {
-            // Show the file chooser dialog
-            File selectedFile = fileChooser.showOpenDialog(null);
-
-            if (selectedFile != null) {
-                try {
-                    Path destination = Path.of("src/main/resources/Videos/" + fileName + ".mp4");
-                    Files.copy(selectedFile.toPath(), destination);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
 }
