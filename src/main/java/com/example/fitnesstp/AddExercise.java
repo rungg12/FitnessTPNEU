@@ -11,16 +11,20 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class AddExercise {
 
     Pane root;
     HomepageController homepageController;
+    FileChooser fileChooser;
 
     public AddExercise(Pane root, HomepageController homepageController){
         this.root = root;
@@ -43,6 +47,11 @@ public class AddExercise {
         Text titleText = new Text("Add Workout");
         titleText.setFont(Font.font("Montserrat", FontWeight.BOLD, 50));
         titleText.setFill(Color.WHITE);
+
+        fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Video File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Video Files", "*.mp4"));
+
 
         TextField nameTextField = new TextField();
         nameTextField.setPromptText("Name");
@@ -83,6 +92,8 @@ public class AddExercise {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        uploadVideo(String.valueOf(nextNumber));
     }
 
     private int findNextAvailableNumber() {
@@ -110,7 +121,22 @@ public class AddExercise {
                 return true;
             }
         }
-
         return false;
     }
+
+
+        private void uploadVideo(String fileName) {
+            // Show the file chooser dialog
+            File selectedFile = fileChooser.showOpenDialog(null);
+
+            if (selectedFile != null) {
+                try {
+                    Path destination = Path.of("src/main/resources/Videos/" + fileName + ".mp4");
+                    Files.copy(selectedFile.toPath(), destination);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
 }

@@ -1,14 +1,12 @@
 package com.example.fitnesstp;
 
 import com.google.gson.Gson;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -79,7 +77,6 @@ public class WorkoutController {
 
 
     private void setPositionsAndId(){
-
         scrollPane.setLayoutX(10.0);
         scrollPane.setLayoutY(10.0);
         scrollPane.setPrefHeight(1060.0);
@@ -136,6 +133,7 @@ public class WorkoutController {
         exerciseDescription.setWrapText(true);
         exerciseDescription.setFont(Font.font("Montserrat", FontWeight.BOLD, 25));
         exerciseDescription.setText(exercise.getDescription());
+        exerciseDescription.setEditable(false);
         exerciseName.setText(exercise.getName());
         exerciseName.setFont(Font.font("Montserrat", FontWeight.BOLD, 40));
         exerciseName.setFill(Color.WHITE);
@@ -172,14 +170,11 @@ public class WorkoutController {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 
-        testRec.setWidth(200);
-        testRec.setHeight(200);
-        testRec.setStyle("-fx-background-color: red");
-
-        content.getChildren().addAll(testRec);
+        testRec.setWidth(150);
+        testRec.setHeight(150);
         testRec.setId("RectLightpurple");
-        testRec.setLayoutX(5);
-        testRec.setLayoutY(5);
+
+        content.getChildren().add(testRec);
 
         scrollPane.setContent(content);
     }
