@@ -2,7 +2,6 @@ package com.example.fitnesstp;
 
 import com.google.gson.Gson;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.*;
@@ -10,7 +9,6 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -23,9 +21,6 @@ import java.util.Random;
 public class WorkoutController {
     private final Pane root;
 
-
-    MediaPlayer mediaPlayer;
-    private Pane rightSide;
     private Button nextExercise;
     private TextArea exerciseDescription;
 
@@ -33,18 +28,15 @@ public class WorkoutController {
 
     private MediaView videoPlayer;
     private Media exerciseVideo;
-
-    private ScrollPane scrollPane;
-    private VBox content;
+    private MediaPlayer mediaPlayer;
 
     private Exercise exercise;
-    private Rectangle testRec;
 
     public WorkoutController(Pane root, HomepageController homepageController){
         root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/Homestyle.css")).toExternalForm());
 
         this.root = root;
-
+        this.root.setId("BackgroundPane");
         root.setOnKeyPressed(event -> {
             KeyCode keyCode = event.getCode();
 
@@ -56,65 +48,56 @@ public class WorkoutController {
         root.getChildren().clear();
         createObjects();
         setPositionsAndId();
-        addExerciseToList();
     }
 
     private void createObjects(){
-        rightSide = new AnchorPane();
         nextExercise = new Button("next exercise");
         exerciseDescription = new TextArea();
         exerciseName = new Text();
         videoPlayer = new MediaView();
-        scrollPane = new ScrollPane();
-        content = new VBox();
 
-        rightSide.getChildren().addAll(exerciseDescription, videoPlayer, nextExercise);
-        root.getChildren().addAll(rightSide, scrollPane);
+        root.getChildren().addAll(exerciseDescription, videoPlayer, nextExercise);
 
-        testRec = new Rectangle();
         nextExercise.setOnAction(actionEvent -> setExerciseVideo());
     }
 
 
 
     private void setPositionsAndId(){
-        scrollPane.setLayoutX(10.0);
-        scrollPane.setLayoutY(10.0);
-        scrollPane.setPrefHeight(1060.0);
-        scrollPane.setPrefWidth(330.0);
+        videoPlayer.setX(root.getWidth() * 0.0052083333333333);
+        videoPlayer.setY(root.getHeight() * 0.0185185185185185);
+        videoPlayer.setFitWidth(root.getWidth() * 0.8020833333333333);
+        videoPlayer.setFitHeight(root.getHeight() * 0.5462962962962963);
 
-        rightSide.setLayoutX(330.0);
-        rightSide.setLayoutY(00.0);
+        HBox buttons = new HBox(root.getWidth() * 0.0104166666666667, exerciseName, nextExercise);
+        buttons.setLayoutX(root.getWidth() * 0.0104166666666667);
+        buttons.setLayoutY(root.getHeight() * 0.65);
+        buttons.setSpacing(root.getWidth() * 0.015625);
 
-        videoPlayer.setX(10);
-        videoPlayer.setY(20);
-        videoPlayer.setFitWidth(1540.0);
-        videoPlayer.setFitHeight(590.0);
+        nextExercise.setPrefWidth(root.getWidth() * 0.3489583333333333);
+        nextExercise.setMinWidth(root.getWidth() * 0.3489583333333333);
 
-        nextExercise.setMinWidth(300);
-        nextExercise.setPrefHeight(60);
+        nextExercise.setPrefHeight(root.getHeight() * 0.0555555555555556);
 
-        HBox buttons = new HBox(200, exerciseName, nextExercise);
-        buttons.setLayoutX(20);
-        buttons.setLayoutY(620);
-        buttons.setSpacing(30);
-
-        exerciseDescription.setPrefWidth(1360);
-        exerciseDescription.setPrefHeight(265);
-        exerciseDescription.setLayoutX(20);
-        exerciseDescription.setLayoutY(710);
-        rightSide.getChildren().add(buttons);
+        exerciseDescription.setPrefWidth(root.getWidth() * 0.9895833333333333);
+        exerciseDescription.setMinWidth(Region.USE_PREF_SIZE);
+        exerciseDescription.setPrefHeight(root.getHeight() * 0.2453703703703704);
+        exerciseDescription.setLayoutX(root.getWidth() * 0.0052083333333333);
+        exerciseDescription.setLayoutY(root.getHeight() * 0.745);
+        root.getChildren().add(buttons);
 
         setExerciseVideo();
         exerciseDescription.setText(exercise.getDescription());
     }
 
     private void setExerciseVideo() {
-        Gson gson = new Gson();
-        if (mediaPlayer != null) {
-            mediaPlayer.stop();
+        if(mediaPlayer != null){
+            exerciseVideo = null;
             mediaPlayer.dispose();
+            videoPlayer.setMediaPlayer(null);
         }
+        Gson gson = new Gson();
+
         // Randomly select a file number
         Random random = new Random();
         int fileNumber = random.nextInt(getNumberOfFilesInFolder()) + 1;
@@ -170,16 +153,4 @@ public class WorkoutController {
         return 0; //Falls der Ordner nicht exisitiert
     }
 
-    private void addExerciseToList(){
-        scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
-        scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-
-        testRec.setWidth(150);
-        testRec.setHeight(150);
-        testRec.setId("RectLightpurple");
-
-        content.getChildren().add(testRec);
-
-        scrollPane.setContent(content);
-    }
 }
