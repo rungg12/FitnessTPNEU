@@ -27,7 +27,6 @@ public class WorkoutController {
     private final Pane root;
 
     private Pane rightSide;
-    private Button previousExercise;
     private Button nextExercise;
     private TextArea exerciseDescription;
 
@@ -62,9 +61,7 @@ public class WorkoutController {
     }
 
     private void createObjects(){
-
         rightSide = new AnchorPane();
-        previousExercise = new Button("previous exercise");
         nextExercise = new Button("next exercise");
         exerciseDescription = new TextArea();
         exerciseName = new Text();
@@ -72,7 +69,7 @@ public class WorkoutController {
         scrollPane = new ScrollPane();
         content = new VBox();
 
-        rightSide.getChildren().addAll(previousExercise, exerciseDescription, videoPlayer, nextExercise);
+        rightSide.getChildren().addAll(exerciseDescription, videoPlayer, nextExercise);
         root.getChildren().addAll(rightSide, scrollPane);
 
         testRec = new Rectangle();
@@ -96,14 +93,11 @@ public class WorkoutController {
         videoPlayer.setFitWidth(1540.0);
         videoPlayer.setFitHeight(590.0);
 
-        HBox buttons = new HBox(20, exerciseName,previousExercise, nextExercise);
+        HBox buttons = new HBox(20, exerciseName, nextExercise);
         buttons.setLayoutX(20);
         buttons.setLayoutY(620);
         buttons.setSpacing(30);
 
-
-        previousExercise.setPrefHeight(60);
-        previousExercise.setPrefWidth(1000);
         nextExercise.setPrefWidth(670);
         nextExercise.setPrefHeight(60);
 
@@ -116,28 +110,6 @@ public class WorkoutController {
         setExerciseVideo();
         exerciseDescription.setText(exercise.getDescription());
     }
-/*
-    private void setExerciseVideo(){
-        Gson gson = new Gson();
-        try (FileReader reader = new FileReader(new File(Objects.requireNonNull(getClass().getResource("/Exercises/Test.json")).toURI()))){
-            exercise = gson.fromJson(reader, Exercise.class);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        try{
-            File f = new File("src/main/resources/Videos/Test.mp4");
-            exerciseVideo = new Media(f.toURI().toString());
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-        mediaPlayer = new MediaPlayer(exerciseVideo);
-        videoPlayer.setMediaPlayer(mediaPlayer);
-        mediaPlayer.play();
-    }
-
- */
 
     private void setExerciseVideo() {
         Gson gson = new Gson();
