@@ -26,3 +26,8 @@
     -fx-background-color: #303030;
     -fx-fill: #303030;
 }
+
+#BackgroundPane {
+    -fx-background-image: url(/images/bgImageCut.png);
+    -fx-background-size: cover;
+}

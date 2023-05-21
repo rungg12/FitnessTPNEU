@@ -32,6 +32,7 @@ public class WorkoutTimer {
     public WorkoutTimer(Pane root, HomepageController hpc) {
         root.getChildren().clear();
         this.root = root;
+        root.setId("BackgroundPane");
         createObjects();
         root.setOnKeyPressed(event -> {
             KeyCode keyCode = event.getCode();

@@ -35,6 +35,7 @@
 
 #BackgroundPane {
     -fx-background-image: url(/images/bgImageCut.png);
+    -fx-background-size: cover;
 }
 
 #SwapRegister {
