@@ -19,7 +19,6 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.Objects;
 import java.util.Random;
-import java.util.Timer;
 
 import static com.example.fitnesstp.WorkoutController.getNumberOfFilesInFolder;
 
@@ -32,6 +31,8 @@ public class HomepageController {
     ImageView imageView2;
     ImageView imageView3;
     ImageView imageView4;
+    WorkoutTimer workoutTimer;
+    AddExercise addExercise;
 
     public HomepageController(Scene scene, Pane root){
         root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/Homestyle.css")).toExternalForm());
@@ -225,17 +226,13 @@ public class HomepageController {
         background.getChildren().addAll(buttonbox, text1);
 
         //Listener fuer das Klicken auf die Symbole
-        imageView1.setOnMouseClicked(event -> {
-            AddExercise addExercise =  new AddExercise(background, HomepageController.this);
-        });
+        imageView1.setOnMouseClicked(event -> addExercise =  new AddExercise(background, HomepageController.this));
 
 
         imageView2.setOnMouseClicked(event -> new WorkoutController(background, HomepageController.this));
 
 
-        imageView3.setOnMouseClicked(event -> {
-            Timer timer = new Timer();
-        });
+        imageView3.setOnMouseClicked(event -> workoutTimer = new WorkoutTimer(background, this));
 
         imageView4.setOnMouseClicked(event -> Platform.exit());
     }
