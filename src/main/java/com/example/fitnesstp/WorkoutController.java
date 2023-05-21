@@ -1,7 +1,6 @@
 package com.example.fitnesstp;
 
 import com.google.gson.Gson;
-import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -24,6 +23,8 @@ import java.util.Random;
 public class WorkoutController {
     private final Pane root;
 
+
+    MediaPlayer mediaPlayer;
     private Pane rightSide;
     private Button nextExercise;
     private TextArea exerciseDescription;
@@ -90,13 +91,13 @@ public class WorkoutController {
         videoPlayer.setFitWidth(1540.0);
         videoPlayer.setFitHeight(590.0);
 
-        HBox buttons = new HBox(20, exerciseName, nextExercise);
+        nextExercise.setMinWidth(300);
+        nextExercise.setPrefHeight(60);
+
+        HBox buttons = new HBox(200, exerciseName, nextExercise);
         buttons.setLayoutX(20);
         buttons.setLayoutY(620);
         buttons.setSpacing(30);
-
-        nextExercise.setPrefWidth(670);
-        nextExercise.setPrefHeight(60);
 
         exerciseDescription.setPrefWidth(1360);
         exerciseDescription.setPrefHeight(265);
@@ -110,7 +111,10 @@ public class WorkoutController {
 
     private void setExerciseVideo() {
         Gson gson = new Gson();
-
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.dispose();
+        }
         // Randomly select a file number
         Random random = new Random();
         int fileNumber = random.nextInt(getNumberOfFilesInFolder()) + 1;
@@ -140,7 +144,7 @@ public class WorkoutController {
         exerciseName.setTextAlignment(TextAlignment.CENTER);
 
         if (exerciseVideo != null) {
-            MediaPlayer mediaPlayer = new MediaPlayer(exerciseVideo);
+            mediaPlayer = new MediaPlayer(exerciseVideo);
             videoPlayer.setMediaPlayer(mediaPlayer);
             mediaPlayer.play();
         }

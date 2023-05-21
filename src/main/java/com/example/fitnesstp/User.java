@@ -1,7 +1,7 @@
 package com.example.fitnesstp;
 
 import java.io.Serializable;
-import java.util.List;
+
 
 /**
  * User - Class
@@ -10,12 +10,7 @@ import java.util.List;
 
 public class User implements Serializable {
     private String name;
-    private String password;
-    private int age;
-    private Double height;
-    private Double weight;
-    private char gender;
-    private List<Workout> workouts;
+    private final String password;
 
     public User(String username, String password){
         this.password = password;
@@ -33,55 +28,4 @@ public class User implements Serializable {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Double getHeight() {
-        return height;
-    }
-
-    public void setHeight(Double height) {
-        this.height = height;
-    }
-
-    public Double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
-
-    public char getGender() {
-        return gender;
-    }
-
-    public void setGender(char gender) {
-        this.gender = gender;
-    }
-
-    public List<Workout> getWorkouts() {
-        return workouts;
-    }
-
-    public void setWorkouts(List<Workout> workouts) {
-        this.workouts = workouts;
-    }
-
-    public void addWorkout(Workout workoutToAdd){
-        workouts.add(workoutToAdd);
-    }
-
-    public void removeWorkout(Workout workoutToRemove){
-        workouts.remove(workoutToRemove);
-    }
 }

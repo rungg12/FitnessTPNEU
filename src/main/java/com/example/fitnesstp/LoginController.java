@@ -70,7 +70,7 @@ public class LoginController {
 
             for (Node c : loginPane.getChildren()) {
                 if(checkIfEmpty(c)){
-                   if (registerPassword.getText().equals(repeatPassword.getText())) {
+                   if (registerPassword.getText().equals(repeatPassword.getText()) && !registerPassword.getText().equals("") && !repeatPassword.getText().equals("") && !registerUsername.getText().equals("")) {
                        try {
                            register(registerUsername.getText(), registerPassword.getText());
                        } catch (IOException e) {
@@ -83,7 +83,13 @@ public class LoginController {
                            break;
                        }
                        homepage.createObjects();
-                   }else {
+                   } else if (registerPassword.getText().equals("") || repeatPassword.getText().equals("") || registerUsername.getText().equals("")) {
+                       registerUsername.setStyle("-fx-prompt-text-fill: red");
+                       registerUsername.setPromptText("All Fields have to be filled out!");
+                       registerPassword.clear();
+                       registerUsername.clear();
+                       repeatPassword.clear();
+                   } else {
                        registerUsername.setStyle("-fx-prompt-text-fill: red");
                        registerUsername.setPromptText("The passwords entered do not match!");
                        registerPassword.clear();
@@ -109,15 +115,16 @@ public class LoginController {
     }
 
     public boolean authenticate(String username, String password) throws IOException, ClassNotFoundException {
-        // Deserialisation der Abgespeicherten User
+        // Deserialisation der abgespeicherten User
         FileInputStream fileIn;
         ObjectInputStream in;
         User user;
         try {
-            fileIn = new FileInputStream(username + ".ser");
+            String fileSrc = "src/main/resources/users/" + username + ".ser";
+            fileIn = new FileInputStream(fileSrc);
             in = new ObjectInputStream(fileIn);
             user = (User) in.readObject();
-        } catch (ClassNotFoundException a){
+        } catch (FileNotFoundException a){
             this.username.setStyle("-fx-prompt-text-fill: red");
             this.username.setPromptText("No Account found");
             this.password.setPromptText("");
@@ -125,6 +132,7 @@ public class LoginController {
             this.username.clear();
             return false;
         } catch (IOException e){
+            e.printStackTrace();
             this.username.setStyle("-fx-prompt-text-fill: red");
             this.username.setPromptText("Error");
             this.password.setPromptText("");
@@ -146,7 +154,7 @@ public class LoginController {
         User user = new User(username, password);
 
         //Serialisieren
-        FileOutputStream fileOut = new FileOutputStream(username + ".ser");
+        FileOutputStream fileOut = new FileOutputStream("src/main/resources/Users/" + username + ".ser");
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         out.writeObject(user);
         out.close();
