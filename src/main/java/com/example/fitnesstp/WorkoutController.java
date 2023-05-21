@@ -144,7 +144,7 @@ public class WorkoutController {
 
         // Randomly select a file number
         Random random = new Random();
-        int fileNumber = random.nextInt(20) + 1; // Assuming files are numbered from 1 to 20
+        int fileNumber = random.nextInt(getNumberOfFilesInFolder()) + 1;
 
         try (FileReader reader = new FileReader(new File(Objects.requireNonNull(getClass().getResource("/Exercises/" + fileNumber + ".json")).toURI()))) {
             exercise = gson.fromJson(reader, Exercise.class);
@@ -174,6 +174,26 @@ public class WorkoutController {
             videoPlayer.setMediaPlayer(mediaPlayer);
             mediaPlayer.play();
         }
+    }
+
+    public static int getNumberOfFilesInFolder() {
+        String folderPath = "src/main/resources/Exercises";
+        File folder = new File(folderPath);
+
+        if (folder.isDirectory()) {
+            File[] files = folder.listFiles();
+
+            if (files != null) {
+                int fileCount = 0;
+                for (File file : files) {
+                    if (file.isFile()) {
+                        fileCount++;
+                    }
+                }
+                return fileCount;
+            }
+        }
+        return 0; //Falls der Ordner nicht exisitiert
     }
 
     private void addExerciseToList(){
