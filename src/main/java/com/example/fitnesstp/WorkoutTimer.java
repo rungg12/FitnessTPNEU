@@ -8,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Region;
 import javafx.scene.text.Font;
 import javafx.util.Duration;
 
@@ -45,8 +46,9 @@ public class WorkoutTimer {
     private void createObjects(){
 
         textField = new TextField("00:00:00");
-        textField.setPrefHeight(30);
-        textField.setPrefWidth(100);
+        textField.setPrefHeight(Region.USE_COMPUTED_SIZE);
+        textField.setMinHeight(Region.USE_COMPUTED_SIZE);
+        textField.setPrefWidth(root.getWidth() * 0.05208333333333333333333333333333);
         textField.setFont(new Font(18));
 
         // Bind the textField layout to the scene width and height
@@ -55,24 +57,40 @@ public class WorkoutTimer {
 
         // Create the buttons
         Button startButton = new Button("Starten");
-        startButton.setPrefHeight(50);
-        startButton.setPrefWidth(200);
-        startButton.setMinWidth(200);
+        startButton.setPrefHeight(root.getHeight() * 0.0462962962962962962962962962963);
+        startButton.setPrefWidth(root.getWidth() * 0.11979166666666666666666666666667);
+        startButton.setMinWidth(root.getWidth() * 0.11979166666666666666666666666667);
 
         startButton.setFont(new Font(18));
-        startButton.setOnAction(actionevent -> startTimer(LocalTime.parse(textField.getText())));
+        startButton.setOnAction(actionevent -> {
+            if(textField.getText().matches("\\d{2}:\\d{2}:\\d{2}"))
+                startTimer(LocalTime.parse(textField.getText()));
+            else{
+                Timeline timeline = new Timeline(new KeyFrame(Duration.millis(1), actionevent2 ->{
+                    textField.setText("Ungültige eingabe");
+                    textField.setStyle("-fx-text-fill: red; -fx-font-size: 20");
+                }));
+                timeline.setCycleCount(2000);
+                timeline.play();
+                timeline.setOnFinished(actionevent2 -> {
+                    textField.setText("00:00:00");
+                    textField.setStyle("-fx-text-fill: black");
+
+                });
+            }
+        });
 
         Button pauseButton = new Button("Pausieren");
-        pauseButton.setPrefHeight(50);
-        pauseButton.setPrefWidth(200);
-        pauseButton.setMinWidth(200);
+        pauseButton.setPrefHeight(root.getHeight() * 0.0462962962962962962962962962963);
+        pauseButton.setPrefWidth(root.getWidth() * 0.11979166666666666666666666666667);
+        pauseButton.setMinWidth(root.getWidth() * 0.11979166666666666666666666666667);
         pauseButton.setFont(new Font(18));
         pauseButton.setOnAction(actionevent -> pauseTimer());
 
         Button resetButton = new Button("Zurücksetzen");
         resetButton.setPrefHeight(50);
-        resetButton.setPrefWidth(230);
-        resetButton.setMinWidth(230);
+        resetButton.setPrefWidth(root.getWidth() * 0.15);
+        resetButton.setMinWidth(root.getWidth() * 0.15);
         resetButton.setFont(new Font(18));
         resetButton.setOnAction(actionevent -> reset());
 
@@ -93,12 +111,12 @@ public class WorkoutTimer {
     private void pauseTimer(){
         if(isPaused){
             tl.play();
-            textField.setEditable(true);
+            textField.setEditable(false);
         }
         else{
             tl.pause();
+            textField.setEditable(true);
         }
-        System.out.println(isPaused);
 
     }
     /**
@@ -129,6 +147,7 @@ public class WorkoutTimer {
     }
     public void reset(){
         isPaused = false;
+        textField.setEditable(true);
         textField.setText("00:00:00");
         if(tl.getStatus().equals(Animation.Status.RUNNING))
             tl.stop();
