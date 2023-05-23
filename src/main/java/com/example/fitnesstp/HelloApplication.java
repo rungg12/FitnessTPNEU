@@ -21,7 +21,7 @@ public class HelloApplication extends Application {
 
 
 
-        stage.setTitle("Test");
+        stage.setTitle("Fitness Fiesta");
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setScene(scene);
         stage.setWidth(1920);

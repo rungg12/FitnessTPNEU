@@ -14,6 +14,7 @@ import javafx.util.Duration;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 
 /**
  * This is a Class to set a Timer in a TextField, that updates the time in the given textField and counts down for the duration of the set timer.
@@ -32,6 +33,8 @@ public class WorkoutTimer {
      */
     public WorkoutTimer(Pane root, HomepageController hpc) {
         root.getChildren().clear();
+        root.getStylesheets().clear();
+        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/TimerStyle.css")).toExternalForm());
         this.root = root;
         root.setId("BackgroundPane");
         createObjects();

@@ -33,7 +33,8 @@ public class WorkoutController {
     private Exercise exercise;
 
     public WorkoutController(Pane root, HomepageController homepageController){
-        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/Homestyle.css")).toExternalForm());
+        root.getStylesheets().clear();
+        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/WorkoutStyle.css")).toExternalForm());
 
         this.root = root;
         this.root.setId("BackgroundPane");
@@ -128,6 +129,7 @@ public class WorkoutController {
 
         if (exerciseVideo != null) {
             mediaPlayer = new MediaPlayer(exerciseVideo);
+            mediaPlayer.setMute(true);
             videoPlayer.setMediaPlayer(mediaPlayer);
             mediaPlayer.play();
         }

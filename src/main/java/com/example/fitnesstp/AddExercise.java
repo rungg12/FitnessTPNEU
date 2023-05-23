@@ -18,6 +18,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
 
 public class AddExercise {
 
@@ -25,7 +26,11 @@ public class AddExercise {
     HomepageController homepageController;
 
     public AddExercise(Pane root, HomepageController homepageController) {
+        root.getStylesheets().clear();
+        root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/UploadStyle.css")).toExternalForm());
+
         this.root = root;
+        root.setId("BackgroundPane");
         this.homepageController = homepageController;
 
         root.setOnKeyPressed(event -> {

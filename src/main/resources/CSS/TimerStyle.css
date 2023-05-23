@@ -1,0 +1,33 @@
+#RectWhite{
+    -fx-background-radius: 50;
+    -fx-background-color: WHITE;
+}
+
+#RectPurple{
+    -fx-arc-width: 50;
+    -fx-arc-height: 50;
+    -fx-fill: #983faf;
+    -fx-border-radius: 50;
+}
+
+#RectLightpurple{
+    -fx-arc-width: 50;
+    -fx-arc-height: 50;
+    -fx-fill: #d962f6;
+}
+
+#slider{
+    -fx-arc-width: 50;
+    -fx-arc-height: 50;
+    -fx-fill: WHITE;
+}
+
+#background {
+    -fx-background-color: #303030;
+    -fx-fill: #303030;
+}
+
+#BackgroundPane {
+    -fx-background-image: url(/images/TimerBackground.png);
+    -fx-background-size: cover;
+}
