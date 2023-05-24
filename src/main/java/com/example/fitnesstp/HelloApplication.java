@@ -6,7 +6,11 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
-
+/**
+ * Die HelloApplication-Klasse ist die Hauptklasse von Fitness Fiesta.
+ * Sie implementiert die Startmethode für JavaFX.
+ * @author Laurin Rungg, Dominik Puner
+ */
 public class HelloApplication extends Application {
 
     @Override

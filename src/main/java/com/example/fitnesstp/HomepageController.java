@@ -22,6 +22,12 @@ import java.util.Random;
 
 import static com.example.fitnesstp.WorkoutController.getNumberOfFilesInFolder;
 
+/**
+ * Der HomepageController ist für die Steuerung der Homepage-Funktionalitäten zuständig.
+ * Er verwaltet die Anzeige von Übungsinformationen, Schaltflächen und Aktionen, die auf der Homepage ausgeführt werden können.
+ * @author Laurin Rungg, Matthias Zelger
+ */
+
 public class HomepageController {
     Scene sceneAct;
     Pane background;

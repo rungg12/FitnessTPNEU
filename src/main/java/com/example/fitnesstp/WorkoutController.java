@@ -18,6 +18,12 @@ import java.io.*;
 import java.util.Objects;
 import java.util.Random;
 
+
+/**
+ * Die WorkoutController-Klasse implementiert den Controller für die Workout-Anwendung.
+ * @author David Erlacher, Laurin Rungg, Dominik Puner
+ */
+
 public class WorkoutController {
     private final Pane root;
 
@@ -32,6 +38,13 @@ public class WorkoutController {
 
     private Exercise exercise;
 
+
+    /**
+     * Erstellt eine neue Instanz des WorkoutControllers.
+     *
+     * @param root                Die Wurzel-Pane, auf der die Workout-Ansicht angezeigt wird.
+     * @param homepageController Der Homepage-Controller, um zur Startseite zurückzukehren.
+     */
     public WorkoutController(Pane root, HomepageController homepageController){
         root.getStylesheets().clear();
         root.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/CSS/WorkoutStyle.css")).toExternalForm());
@@ -70,7 +83,7 @@ public class WorkoutController {
         videoPlayer.setFitWidth(root.getWidth() * 0.8020833333333333);
         videoPlayer.setFitHeight(root.getHeight() * 0.5462962962962963);
 
-        HBox buttons = new HBox(root.getWidth() * 0.0104166666666667, exerciseName, nextExercise);
+        HBox buttons = new HBox(root.getWidth() * 0.0104166666666667, nextExercise, exerciseName);
         buttons.setLayoutX(root.getWidth() * 0.0104166666666667);
         buttons.setLayoutY(root.getHeight() * 0.65);
         buttons.setSpacing(root.getWidth() * 0.015625);

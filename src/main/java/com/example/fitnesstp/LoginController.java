@@ -10,6 +10,12 @@ import javafx.scene.layout.Pane;
 import java.io.*;
 import java.util.Objects;
 
+/**
+ * Der LoginController ist verantwortlich für die Steuerung der Login-Funktionalität
+ * und die Anzeige der Benutzeroberfläche für den Login und die Registrierung.
+ * @author Laurin Rungg, Dominik Puner
+ */
+
 public class LoginController {
     private boolean register = false;
     private final Scene scene;

@@ -20,6 +20,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
 
+
+
+/**
+
+ Die Klasse AddExercise ist für das Hinzufügen einer neuen Übung zum Workout zuständig.
+
+ Sie bietet Funktionen zum Erstellen und Speichern von Workout-Übungen mit einem Namen,
+
+ einer Beschreibung und einer zugehörigen Videodatei.
+ @author Laurin Rungg
+ */
 public class AddExercise {
 
     Pane root;
